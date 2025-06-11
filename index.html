@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    
+    <body onload="fetchContacts()">
+        <div class="container">
+            <h2 class="contact-header">Contact List</h2>
+            <input type="text" class="search-bar" placeholder="Search" onkeyup="filterContacts(this.value)">
+            
+            <div id="table">Contacts loading...</div>
+            <div class="button-container">
+                <button id="refresh" type="button">Refresh</button>
+                <button id="addContact" type="button">Add Contact</button>
+            </div>
+        </div>
+
+        <script src="config.js"></script>
+        
+        <script>             
+            document.getElementById("refresh").addEventListener("click", fetchContacts);
+            
+            document.getElementById("addContact").addEventListener("click", addContact);
+            
+            function fetchContacts(){
+                fetch(rootPath + "controller/get-contacts/")
+                    .then(function(response){
+                        return response.json();
+                })
+                .then(function(data){
+                   displayOutput(data); 
+                })  
+            }
+            
+            function displayOutput(data){
+                output = "<table>";
+                
+                for(a in data){
+                    output += `
+                        <tr onclick="editContact(${data[a].id})">
+                            <td><img src="${rootPath}controller/uploads/${data[a].avatar}" width="40"/></td>
+                            <td><h5>${data[a].firstname}</h5></td>
+                            <td><h5>${data[a].lastname}</h5></td>
+                        </tr>
+                    `
+                }
+                output += "</table>";
+                document.getElementById("table").innerHTML = output;
+            }
+            
+            function addContact(){
+                window.open("addContact.html","_self");
+            }
+            
+            function editContact(id){
+                window.open("editContact.html?id="+ id, "_self");
+            }
+
+            // Function to filter contacts based on search input
+            function filterContacts(searchTerm) {
+                let table = document.getElementById("table").getElementsByTagName("table")[0];
+                let tr = table.getElementsByTagName("tr");
+
+                for (let i = 0; i < tr.length; i++) {
+                    let td = tr[i].getElementsByTagName("td")[1]; // First name column
+                    if (td) {
+                        let text = td.textContent || td.innerText;
+                        tr[i].style.display = text.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ? "" : "none";
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

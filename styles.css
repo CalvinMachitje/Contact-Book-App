@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #4c6ef5 0%, #6b48ff 100%);
+    min-height: 100vh;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: #1a202c;
+}
+
+/* General container for centering content */
+.container {
+    width: 50%;
+    max-width: 500px;
+}
+
+/* Common form and list container styling */
+.contact-form,
+.contact-list {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Contact header styling */
+.contact-header {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #4c6ef5, #6b48ff);
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Search bar styling */
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 25px;
+    font-size: 1rem;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #4a5568;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: #4c6ef5;
+    box-shadow: 0 0 0 2px rgba(76, 110, 245, 0.2);
+}
+
+/* Table styling to mimic card layout */
+#table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+#table table tr {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #fff;
+    transition: background 0.2s;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+#table table tr:hover {
+    background: #f7fafc;
+}
+
+#table table tr:last-child {
+    border-bottom: none;
+}
+
+#table table td {
+    padding: 5px;
+}
+
+#table table td:first-child img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #60a5fa;
+    margin-right: 10px;
+}
+
+/* Common form input styling */
+.contact-form label,
+#editForm label {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+#editForm input[type="text"],
+#editForm input[type="tel"],
+#editForm input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    background: #f7fafc;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+#editForm input[type="text"]:focus,
+#editForm input[type="tel"]:focus,
+#editForm input[type="email"]:focus {
+    border-color: #4c6ef5;
+    outline: none;
+    background: #fff;
+}
+
+#editForm input[readonly] {
+    background: #edf2f7;
+    color: #4a5568;
+}
+
+.contact-form input[type="file"],
+#editForm input[type="file"] {
+    margin-bottom: 15px;
+}
+
+.contact-form #avatarPreview,
+#avatarImage {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #60a5fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #edf2f7;
+}
+
+.contact-form #avatarPreview img,
+#avatarImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.contact-form #avatarPreview {
+    border-style: dashed;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form #avatarPreview:hover {
+    border-color: #4c6ef5;
+    cursor: pointer;
+}
+
+/* Buttons styling */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+button,
+#submitForm,
+#homeLink,
+#editContact,
+#deleteContact {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+button#refresh,
+#homeLink {
+    background: linear-gradient(90deg, #48bb78, #2f855a); /* Green gradient */
+}
+
+button#addContact,
+#submitForm {
+    background: linear-gradient(90deg, #4c6ef5, #5a67d8); /* Blue gradient */
+}
+
+#editContact {
+    background: linear-gradient(90deg, #f6ad55, #ed8936); /* Orange gradient */
+}
+
+#deleteContact {
+    background: linear-gradient(90deg, #e53e3e, #c53030); /* Red gradient */
+}
+
+button:hover,
+#submitForm:hover,
+#homeLink:hover,
+#editContact:hover,
+#deleteContact:hover {
+    transform: translateY(-1px);
+}
+
+button:active,
+#submitForm:active,
+#homeLink:active,
+#editContact:active,
+#deleteContact:active {
+    transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 500px) {
+    .contact-form,
+    .contact-list {
+        width: 100%;
+        padding: 10px;
+    }
+    #table table tr {
+        padding: 10px;
+        margin-bottom: 3px;
+    }
+    #table table td:first-child img {
+        width: 35px;
+        height: 35px;
+    }
+    #table table td h5,
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    #editForm input[type="text"],
+    #editForm input[type="tel"],
+    #editForm input[type="email"] {
+        font-size: 0.9rem;
+    }
+    .button-container {
+        flex-direction: column;
+        gap: 8px;
+    }
+    button,
+    #submitForm,
+    #homeLink,
+    #editContact,
+    #deleteContact {
+        width: 100%;
+    }
+    .nav-bar {
+        padding: 8px;
+    }
+    .nav-bar a {
+        font-size: 0.8rem;
+    }
+    .nav-bar a i {
+        font-size: 1rem;
+    }
+    #avatarImage,
+    .contact-form #avatarPreview {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Animation for add contact page */
+.contact-form {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
